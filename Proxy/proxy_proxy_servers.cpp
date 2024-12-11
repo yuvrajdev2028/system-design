@@ -9,6 +9,7 @@ class Server{
     public:
     string url;
     Server(string url,string ip, string response){
+        this_thread::sleep_for(chrono::seconds(1));
         cout<<"\033[92m";
         cout<<"Creating Server..."<<endl;
         cout<<"\033[0m";
@@ -28,6 +29,7 @@ class ProxyServer{
     Server *server;
     ProxyServer(){}
     ProxyServer(string proxy_ip,Server *server){
+        this_thread::sleep_for(chrono::seconds(1));
         cout<<"\033[92m";
         cout<<"Creating Proxy Server for "<<server->url<<"..."<<endl;
         cout<<"\033[0m";
@@ -69,6 +71,7 @@ class Client{
     public:
     string request(string url,DNSServer dns_server,Internet internet){
         string server_ip=dns_server.resolve(url);
+        this_thread::sleep_for(chrono::seconds(1));
         cout<<"\033[92m";
         cout<<"Client requesting \'"<<url<<"\' at "<<server_ip<<"..."<<endl;
         cout<<"\033[0m";
@@ -81,6 +84,8 @@ int main(){
     cout<<"Setting up Internet..."<<endl;
     cout<<"\033[0m";
     Internet internet;
+
+    this_thread::sleep_for(chrono::seconds(1));
     cout<<"\033[92m";
     cout<<"Setting up DNS Server..."<<endl;
     cout<<"\033[0m";
@@ -91,9 +96,11 @@ int main(){
     string content;
     string proxy_ip;
 
+    this_thread::sleep_for(chrono::seconds(1));
     cout<<"\033[92m"<<endl;
     cout<<"Set up proxies..."<<endl;
     cout<<"\033[0m"<<endl;
+
     cout<<"Enter the url: ";
     cin>>url;
     cout<<"Enter the ip: ";
@@ -109,6 +116,7 @@ int main(){
     internet.setMapping(google_proxy.proxy_ip,google_proxy);
     dns_server.setMapping(google.url,google_proxy.proxy_ip);
 
+    this_thread::sleep_for(chrono::seconds(1));
     cout<<"\033[92m"<<endl;
     cout<<"Setting up Client..."<<endl;
     cout<<"\033[0m"<<endl;
